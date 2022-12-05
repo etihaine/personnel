@@ -1,6 +1,7 @@
 package personnel;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * Employé d'une ligue hébergée par la M2L. Certains peuvent 
@@ -16,7 +17,9 @@ public class Employe implements Serializable, Comparable<Employe>
 	private String nom, prenom, password, mail;
 	private Ligue ligue;
 	private GestionPersonnel gestionPersonnel;
-	
+	private LocalDate dateArrivee, dateDepart;
+
+	/* Employé en CDI*/	
 	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password)
 	{
 		this.gestionPersonnel = gestionPersonnel;
@@ -25,6 +28,38 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.password = password;
 		this.mail = mail;
 		this.ligue = ligue;
+		/* Date dee départ non fixée */
+		this.dateArrivee = LocalDate.now();
+		this.dateDepart = null;
+	}
+
+	/* Employé en CDD*/	
+	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateDepart)
+	{
+		this.gestionPersonnel = gestionPersonnel;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.password = password;
+		this.mail = mail;
+		this.ligue = ligue;
+		/* Date de départ fixée */
+		this.dateArrivee = LocalDate.now();
+		this.dateDepart = dateDepart;
+	}
+
+	public LocalDate getDateArrivee()
+	{
+		return this.dateArrivee;
+	}
+	
+	public void setDateDepart(LocalDate dateDepart)
+	{
+		this.dateDepart = dateDepart;
+	}
+	
+	public LocalDate getDateDepart()
+	{
+		return this.dateDepart;
 	}
 	
 	/**
