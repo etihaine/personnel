@@ -16,6 +16,7 @@ import java.util.TreeSet;
 public class Ligue implements Serializable, Comparable<Ligue>
 {
 	private static final long serialVersionUID = 1L;
+	@SuppressWarnings("unused")
 	private int id = -1;
 	private String nom;
 	private SortedSet<Employe> employes;
@@ -27,7 +28,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * @param nom le nom de la ligue.
 	 */
 	
-	Ligue(GestionPersonnel gestionPersonnel, String nom) throws SauvegardeImpossible
+	public Ligue(GestionPersonnel gestionPersonnel, String nom) throws SauvegardeImpossible
 	{
 		this(gestionPersonnel, -1, nom);
 		this.id = gestionPersonnel.insert(this); 
