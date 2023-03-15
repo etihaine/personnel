@@ -100,7 +100,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	}
 
 	/**
-	 * Ajoute un employé dans la ligue. Cette méthode 
+//	 * Ajoute un employé dans la ligue. Cette méthode 
 	 * est le seul moyen de créer un employé.
 	 * @param nom le nom de l'employé.
 	 * @param prenom le prénom de l'employé.
