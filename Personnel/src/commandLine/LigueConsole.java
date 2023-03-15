@@ -3,6 +3,7 @@ package commandLine;
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 
 import java.util.ArrayList;
+import java.util.SortedSet;
 
 import commandLineMenus.List;
 import commandLineMenus.Menu;
@@ -48,7 +49,15 @@ public class LigueConsole
 	}
 	private Option afficherEmployes(final Ligue ligue)
 	{
-		return new Option("Afficher les employes", "l", () -> {System.out.println(ligue.getEmployes());});
+		return new Option("Afficher les employes", "l", () -> {
+			
+			SortedSet<Employe> employes = ligue.getEmployes();
+			
+			if(employes.isEmpty())
+				System.out.println("Aucun employé");
+			else
+				System.out.println(ligue.getEmployes());
+			});
 	}
 
 	private Option ajouterLigue()

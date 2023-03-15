@@ -28,7 +28,7 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.password = password;
 		this.mail = mail;
 		this.ligue = ligue;
-		/* Date dee départ non fixée */
+		/* Date de départ non fixée */
 		this.dateArrivee = LocalDate.now();
 		this.dateDepart = null;
 	}
