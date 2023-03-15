@@ -113,11 +113,43 @@ public class LigueConsole
 		);
 	}
 	
+	// Ce menu permet de choisir le type de contrat de l'employé
+	
+	private Menu ajouterEmployeMenu(Ligue ligue)
+	{
+		Menu menu = new Menu("Choisissez le type de contrat :", "ajouter un employé (new)", "A");
+		menu.add(contratCdiOption());
+		menu.add(contratCddOption());
+		menu.addBack("q");
+		return menu;
+	}
+	
+	private Option contratCdiOption()
+	{
+		return new Option("contrat en CDI", "i", 
+			() -> 
+			{
+				System.out.println("Action temporaire : CDI sélectionné");
+			}
+		);
+	}
+	
+	private Option contratCddOption()
+	{
+		return new Option("contrat en CDD", "d", 
+			() -> 
+			{
+				System.out.println("Action temporaire : CDD sélectionné");
+			}
+		);	
+	}
+	
 	private Menu gererEmployes(Ligue ligue)
 	{
-		Menu menu = new Menu("Gérer les employés de " + ligue.getNom(), "e");
+		Menu menu = new Menu("Gérer les employés", "e");
 		menu.add(afficherEmployes(ligue));
 		menu.add(ajouterEmploye(ligue));
+		menu.add(ajouterEmployeMenu(ligue));
 		menu.add(modifierEmploye(ligue));
 		menu.add(supprimerEmploye(ligue));
 		menu.addBack("q");

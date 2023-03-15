@@ -63,9 +63,9 @@ public class Employe implements Serializable, Comparable<Employe>
 	}
 	
 	/**
-	 * Retourne vrai ssi l'employé est administrateur de la ligue 
+	 * Retourne vrai si l'employé est administrateur de la ligue 
 	 * passée en paramètre.
-	 * @return vrai ssi l'employé est administrateur de la ligue 
+	 * @return vrai si l'employé est administrateur de la ligue 
 	 * passée en paramètre.
 	 * @param ligue la ligue pour laquelle on souhaite vérifier si this 
 	 * est l'admininstrateur.
