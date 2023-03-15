@@ -68,7 +68,7 @@ public class LigueConsole
 	
 	private Menu editerLigue(Ligue ligue)
 	{
-		Menu menu = new Menu("Editer " + ligue.getNom());
+		Menu menu = new Menu("Editer la ligue de " + ligue.getNom());
 		menu.add(afficher(ligue));
 		menu.add(gererEmployes(ligue));
 		//menu.add(changerAdministrateur(ligue));
@@ -123,6 +123,7 @@ public class LigueConsole
 				);
 	}
 	
+	@SuppressWarnings("unused")
 	private List<Employe> changerAdministrateur(final Ligue ligue)
 	{
 		return null;
