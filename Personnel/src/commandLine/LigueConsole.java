@@ -15,11 +15,15 @@ public class LigueConsole
 {
 	private GestionPersonnel gestionPersonnel;
 	private EmployeConsole employeConsole;
+	LigueConsole ligueConsole;
+
 
 	public LigueConsole(GestionPersonnel gestionPersonnel, EmployeConsole employeConsole)
 	{
 		this.gestionPersonnel = gestionPersonnel;
 		this.employeConsole = employeConsole;
+		this.ligueConsole = ligueConsole;
+
 	}
 
 	Menu menuLigues()
@@ -150,11 +154,26 @@ public class LigueConsole
 		menu.add(afficherEmployes(ligue));
 		menu.add(ajouterEmploye(ligue));
 		menu.add(ajouterEmployeMenu(ligue));
-		menu.add(modifierEmploye(ligue));
-		menu.add(supprimerEmploye(ligue));
+		//menu.add(modifierEmploye(ligue));
+		menu.add(selectionnerEmploye(ligue));
 		menu.addBack("q");
 		return menu;
 	}
+	private  Menu selectionnerEmploye(Ligue ligue)
+	{
+		Menu menu = new Menu("Gérer l'employé", "e ");
+		menu.add(modifierEmploye(ligue));
+		menu.add(supprimerEmploye(ligue));
+		return menu;
+	}
+	
+	/*private List<Employe> selectionnerEmploye(final Ligue ligue)
+	{
+		return new List<>("Séléctionner un employé", 
+				() -> new ArrayList<>(ligue.getEmployes()),
+				(element) -> gererE(element)
+				);
+	}*/
 
 	private List<Employe> supprimerEmploye(final Ligue ligue)
 	{
