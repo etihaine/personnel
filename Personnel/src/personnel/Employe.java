@@ -211,9 +211,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	{
 		String res = nom + " " + prenom + " " + mail + " (";
 		if (estRoot())
-			res += "super-utilisateur";
+			res += "super-utilisateur )";
 		else
-			res += ligue.toString();
-		return res + ")";
+			res += ligue.toString() + ")";
+		res += " arrivé le : " + dateArrivee + " depart le : " + dateDepart + "\n"; 
+		return res;
 	}
 }

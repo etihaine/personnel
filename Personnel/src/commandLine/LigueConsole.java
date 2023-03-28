@@ -2,9 +2,12 @@ package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.SortedSet;
 
+import commandLineMenus.Action;
 import commandLineMenus.List;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
@@ -101,47 +104,51 @@ public class LigueConsole
 				);
 	}
 	
-	private Option ajouterEmploye(final Ligue ligue)
-	{
-		return new Option("ajouter un employé", "a",
-				() -> 
-				{
-					ligue.addEmploye(getString("nom : "), 
-						getString("prenom : "), getString("mail : "), 
-						getString("password : "));
-				}
-		);
-	}
 	
-	// Ce menu permet de choisir le type de contrat de l'employé
-	
-	private Menu ajouterEmployeMenu(Ligue ligue)
+	private Menu ajouterEmploye(final Ligue ligue)
 	{
-		Menu menu = new Menu("Choisissez le type de contrat :", "ajouter un employé (new)", "A");
-		menu.add(contratCdiOption());
-		menu.add(contratCddOption());
+		Menu menu = new Menu("Choisissez le type de contrat :", "ajouter un employé", "a");
+		menu.add(contratCdiOption(ligue));
+		menu.add(contratCddOption(ligue));
 		menu.addBack("q");
 		return menu;
 	}
 	
-	private Option contratCdiOption()
+	private Option contratCdiOption(Ligue ligue)
 	{
-		return new Option("contrat en CDI", "i", 
-			() -> 
-			{
-				System.out.println("Action temporaire : CDI sélectionné");
-			}
-		);
+		return new Option("contrat en CDI", "i", ajouterEmployeCdiAction(ligue));
 	}
 	
-	private Option contratCddOption()
+	private Action ajouterEmployeCdiAction(Ligue ligue)
 	{
-		return new Option("contrat en CDD", "d", 
-			() -> 
+		return new Action() 
+		{
+			public void optionSelected() 
 			{
-				System.out.println("Action temporaire : CDD sélectionné");
+				ligue.addEmploye(getString("Nom : "), getString("Prenom : "), getString("Mail : "), getString("Mot de passe : ") );
 			}
-		);	
+		};
+	}
+	
+	private Option contratCddOption(Ligue ligue)
+	{
+		return new Option("contrat en CDD", "d", ajouterEmployeCddAction(ligue));	
+	}
+	
+	private Action ajouterEmployeCddAction(Ligue ligue) 
+	{
+		return new Action() 
+		{
+			public void optionSelected() 
+			{
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+				ligue.addEmploye(getString("Nom : "), getString("Prenom : "), getString("Mail : "), getString("Mot de passe : "), 
+						LocalDate.parse(getString("Date fin contrat : "), formatter));
+			}
+
+		};
+			
 	}
 	
 	private Menu gererEmployes(Ligue ligue)
@@ -149,7 +156,6 @@ public class LigueConsole
 		Menu menu = new Menu("Gérer les employés", "e");
 		menu.add(afficherEmployes(ligue));
 		menu.add(ajouterEmploye(ligue));
-		menu.add(ajouterEmployeMenu(ligue));
 		menu.add(modifierEmploye(ligue));
 		menu.add(supprimerEmploye(ligue));
 		menu.addBack("q");
