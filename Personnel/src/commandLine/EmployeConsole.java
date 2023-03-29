@@ -2,6 +2,7 @@ package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
 
+import commandLineMenus.Action;
 import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
@@ -30,6 +31,46 @@ public class EmployeConsole
 			menu.addBack("q");
 			return menu;
 	}
+	
+	
+	// Gestion des employes
+	
+	
+	public Menu editerEmployeMenu(Employe employe)
+	{
+		Menu menu = new Menu("Editer " + employe.getNom() + " " + employe.getPrenom());
+		menu.add(editerEmploye(employe));
+		menu.add(supprimerEmployeMenu(employe));
+		return menu;
+	}
+	
+
+
+	private Menu supprimerEmployeMenu(Employe employe)
+	{
+		Menu menu = new Menu("Supprimer " + employe.getNom() + " " + employe.getPrenom() + " " + employe.getLigue() + " ?", "x");
+		menu.add(supprimerEmployeOption(employe));
+		menu.addBack("Non", "n");
+		return menu;
+
+	}
+	
+	private Option supprimerEmployeOption(Employe employe)
+	{
+		return new Option ("Oui", "o", supprimerEmployeAction(employe));
+	}
+	
+	private Action supprimerEmployeAction(Employe employe)
+	{
+		return new Action() {
+			public void optionSelected()
+			{
+				employe.remove();
+				System.out.println("Employé supprimé !");
+			}
+		};
+	}
+
 
 	private Option changerNom(final Employe employe)
 	{

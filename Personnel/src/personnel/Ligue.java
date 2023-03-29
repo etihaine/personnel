@@ -2,6 +2,7 @@ package personnel;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -98,6 +99,14 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	public SortedSet<Employe> getEmployes()
 	{
 		return Collections.unmodifiableSortedSet(employes);
+	}
+	
+	public ArrayList<Employe> getEmployes()
+	{
+		ArrayList<Employe> employesList = new ArrayList<>();
+		for (Employe employe : employes)
+			employesList.add(employe);
+		return employesList;
 	}
 
 	/**
