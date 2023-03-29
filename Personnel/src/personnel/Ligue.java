@@ -101,7 +101,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 		return Collections.unmodifiableSortedSet(employes);
 	}
 	
-	public ArrayList<Employe> getEmployes()
+	public ArrayList<Employe> getEmployes1()
 	{
 		ArrayList<Employe> employesList = new ArrayList<>();
 		for (Employe employe : employes)
@@ -131,6 +131,11 @@ public class Ligue implements Serializable, Comparable<Ligue>
 		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password, dateFinContrat);
 		employes.add(employe);
 		return employe;
+	}
+	
+	public void removeEmploye(Employe employe)
+	{
+		employes.remove(employe);
 	}
 		
 	/**

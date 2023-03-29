@@ -40,37 +40,28 @@ public class EmployeConsole
 	{
 		Menu menu = new Menu("Editer " + employe.getNom() + " " + employe.getPrenom());
 		menu.add(editerEmploye(employe));
-		menu.add(supprimerEmployeMenu(employe));
+		menu.add(supprimerEmploye(employe));
+		menu.setAutoBack(true);
 		return menu;
 	}
 	
-
-
-	private Menu supprimerEmployeMenu(Employe employe)
+	private Option supprimerEmploye(final Employe employe)
 	{
-		Menu menu = new Menu("Supprimer " + employe.getNom() + " " + employe.getPrenom() + " " + employe.getLigue() + " ?", "x");
-		menu.add(supprimerEmployeOption(employe));
-		menu.addBack("Non", "n");
-		return menu;
-
-	}
-	
-	private Option supprimerEmployeOption(Employe employe)
-	{
-		return new Option ("Oui", "o", supprimerEmployeAction(employe));
+		return new Option ("Supprimer cet employé", "x", supprimerEmployeAction(employe));
 	}
 	
 	private Action supprimerEmployeAction(Employe employe)
 	{
 		return new Action() {
-			public void optionSelected()
-			{
+
+			public void optionSelected() {
 				employe.remove();
-				System.out.println("Employé supprimé !");
+				System.out.println("\n Employé supprimé !");
 			}
+			
 		};
 	}
-
+	
 
 	private Option changerNom(final Employe employe)
 	{
